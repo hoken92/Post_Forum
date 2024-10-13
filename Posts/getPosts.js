@@ -6,7 +6,7 @@ export async function loadPosts(page) {
 
   const paginatedPostData = pagination(postData, page, postsPerPage);
 
-  pageButtons(paginatedPostData.pages);
+  pageButtons(paginatedPostData.pages, page);
 
   // Loop through the json data and create the posts with content inserted
   for (let i = 0; i < paginatedPostData.data.length; i++) {
@@ -54,7 +54,7 @@ export function pagination(data, page, postsPerPage) {
   };
 }
 
-function pageButtons(pages) {
+function pageButtons(pages, page) {
   const container = document.getElementById("pagination-wrapper");
 
   container.innerHTML = "";
@@ -67,4 +67,6 @@ function pageButtons(pages) {
     button.classList.add("page-link");
     button.textContent = i;
   }
+
+  container.children[page - 1].classList.add("active");
 }
