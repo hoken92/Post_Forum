@@ -1,12 +1,12 @@
 // Post container
 const postContainer = document.getElementById("post-container");
-
-// Validate the fields aren't empty
+const newTitleEl = document.getElementById("new-title");
+const newNameEl = document.getElementById("new-name");
+const newContentEl = document.getElementById("new-content");
 
 export async function createNewPost(title, firstName, lastName, body) {
+  // Validate the fields aren't empty
   const data = await newPostRequest(title, firstName, lastName, body);
-
-  console.log(data);
 
   const template = document.getElementById("post-template");
   const clone = template.content.cloneNode(true);
@@ -45,4 +45,23 @@ async function newPostRequest(title, firstName, lastName, body) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export function validateFields(title, newName, body) {
+  if (title === "") {
+    newTitleEl.focus();
+    return false;
+  }
+
+  if (newName === "") {
+    newNameEl.focus();
+    return false;
+  }
+
+  if (body === "") {
+    newContentEl.focus();
+    return false;
+  }
+
+  return true;
 }

@@ -7,6 +7,10 @@ const pageContainer = document.getElementById("pagination-wrapper");
 const newPostModal = document.getElementById("post-modal");
 const postModal = new bootstrap.Modal("#staticBackdrop");
 
+const newTitleEl = document.getElementById("new-title");
+const newNameEl = document.getElementById("new-name");
+const newContentEl = document.getElementById("new-content");
+
 // Loads the first page with 10 posts
 let page = 1;
 getPosts.loadPosts(page);
@@ -25,13 +29,19 @@ pageContainer.addEventListener("click", function (evt) {
 newPostModal.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const newTitle = document.getElementById("new-title").value;
-  const newName = document.getElementById("new-name").value.split(" ");
+  const newTitle = newTitleEl.value;
+  const newName = newNameEl.value.split(" ");
   const firstName = newName.slice(0, 1);
   const lastName = newName.slice(1);
-  const newContent = document.getElementById("new-content").value;
+  const newContent = newContentEl.value;
 
-  createPosts.createNewPost(newTitle, firstName, lastName, newContent);
+  // Validates create post modal isn't empty
+  createPosts.validateFields(newTitle, newNameEl.value, newContent);
 
-  postModal.hide();
+  // If post modal fields are filled and return true. Create the post and hide the modal
+  if (createPosts.validateFields === true) {
+    createPosts.createNewPost(newTitle, firstName, lastName, newContent);
+
+    postModal.hide();
+  }
 });
