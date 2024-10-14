@@ -62,12 +62,52 @@ postContainer.addEventListener("click", function (evt) {
   evt.stopPropagation();
 
   if (evt.target.localName === "img") {
+    const postID =
+      evt.target.parentElement.previousElementSibling.getAttribute("id");
+
     if (evt.target.alt === "likes") {
-      // console.log(evt.target);
-      // console.log(evt.target.previousSibling.textContent);
+      const likeEl = evt.target.previousSibling;
+      let likeAmount = likeEl.textContent;
+
+      if (likeEl.classList.contains("fw-bold")) {
+        console.log("already liked");
+        likeEl.classList.remove("fw-bold");
+        likeEl.classList.remove("text-success");
+        likeAmount--;
+
+        updatePosts.updateLikes(postID, likeAmount).then((likes) => {
+          likeEl.textContent = likes;
+        });
+      } else if (!likeEl.classList.contains("fw-bold")) {
+        console.log("not liked");
+        likeEl.classList.add("fw-bold");
+        likeEl.classList.add("text-success");
+        likeAmount++;
+        updatePosts.updateLikes(postID, likeAmount).then((likes) => {
+          likeEl.textContent = likes;
+        });
+      }
     } else if (evt.target.alt === "dislikes") {
-      console.log(evt.target);
-      console.log(evt.target.previousSibling.textContent);
+      const dislikeEl = evt.target.previousSibling;
+      let dislikeAmount = dislikeEl.textContent;
+
+      if (dislikeEl.classList.contains("fw-bold")) {
+        dislikeEl.classList.remove("fw-bold");
+        dislikeEl.classList.remove("text-danger");
+        dislikeAmount++;
+
+        updatePosts.updateDislikes(postID, dislikeAmount).then((dislikes) => {
+          dislikeEl.textContent = dislikes;
+        });
+      } else if (!dislikeEl.classList.contains("fw-bold")) {
+        console.log("not liked");
+        dislikeEl.classList.add("fw-bold");
+        dislikeEl.classList.add("text-danger");
+        dislikeAmount--;
+        updatePosts.updateDislikes(postID, dislikeAmount).then((dislikes) => {
+          dislikeEl.textContent = dislikes;
+        });
+      }
     }
   }
 });
