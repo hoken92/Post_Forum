@@ -7,7 +7,7 @@ const pageContainer = document.getElementById("pagination-wrapper");
 let page = 1;
 getPosts.loadPosts(page);
 
-// Paginates posts
+// Allows users to paginate through posts
 pageContainer.addEventListener("click", function (evt) {
   if (evt.target.localName === "button") {
     postContainer.innerHTML = "";
