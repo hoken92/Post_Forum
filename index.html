@@ -60,6 +60,31 @@
         </div>
       </div>
     </nav>
+    <!-- Success toast -->
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="position-relative bd-example-toasts rounded-3"
+    >
+      <div
+        id="success-toast"
+        class="toast align-items-center position-relative top-0 start-50 translate-middle-x m-2"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="toast-body"></div>
+          <button
+            type="button"
+            class="btn-close me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
     <h1 class="m-4 text-center">Random Posts</h1>
 
     <!-- Posts Container -->
@@ -101,7 +126,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <form>
+          <form id="post-form">
             <div class="form-floating m-2">
               <input
                 type="text"
@@ -147,7 +172,7 @@
     <!-- Post Template -->
     <template id="post-template">
       <div class="card mb-3 w-75 border-info text-dark shadow">
-        <div class="card-body">
+        <div class="card-body" id="number">
           <h5 class="card-title text-primary" id="title"></h5>
           <h6 class="card-subtitle mb-2 text-body-success" id="subtitle"></h6>
           <p class="card-text" id="card-body"></p>

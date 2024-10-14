@@ -30,6 +30,9 @@ export async function loadPosts(page) {
 
         const userData = await findUserResponse.json();
 
+        clone
+          .getElementById("number")
+          .setAttribute("id", paginatedPostData.data[i].id);
         clone.getElementById("title").textContent =
           paginatedPostData.data[i].title;
         clone.getElementById(
