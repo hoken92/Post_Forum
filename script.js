@@ -61,6 +61,7 @@ newPostModal.addEventListener("submit", function (evt) {
 postContainer.addEventListener("click", function (evt) {
   evt.stopPropagation();
 
+  // Checks to see if the img icon is the target
   if (evt.target.localName === "img") {
     const postID =
       evt.target.parentElement.previousElementSibling.getAttribute("id");
@@ -69,6 +70,7 @@ postContainer.addEventListener("click", function (evt) {
       const likeEl = evt.target.previousSibling;
       let likeAmount = likeEl.textContent;
 
+      // If post is liked, it will remove the like and added count
       if (likeEl.classList.contains("fw-bold")) {
         console.log("already liked");
         likeEl.classList.remove("fw-bold");
