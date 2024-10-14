@@ -1,4 +1,5 @@
 import * as getPosts from "./Posts/getPosts.js";
+import * as createPosts from "./Posts/createPost.js";
 
 const postContainer = document.getElementById("post-container");
 const pageContainer = document.getElementById("pagination-wrapper");
@@ -20,12 +21,17 @@ pageContainer.addEventListener("click", function (evt) {
   }
 });
 
+// Create Post event listener
 newPostModal.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  console.log(document.getElementById("new-title").value);
-  console.log(document.getElementById("new-name").value);
-  console.log(document.getElementById("new-content").value);
+  const newTitle = document.getElementById("new-title").value;
+  const newName = document.getElementById("new-name").value.split(" ");
+  const firstName = newName.slice(0, 1);
+  const lastName = newName.slice(1);
+  const newContent = document.getElementById("new-content").value;
+
+  createPosts.createNewPost(newTitle, firstName, lastName, newContent);
 
   postModal.hide();
 });

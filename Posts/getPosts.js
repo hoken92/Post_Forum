@@ -1,42 +1,52 @@
 export async function loadPosts(page) {
   let postsPerPage = 10;
 
-  const postResponse = await fetch(`https://dummyjson.com/posts`);
-  const postData = await postResponse.json();
+  try {
+    const postResponse = await fetch(`https://dummyjson.com/posts`);
 
-  const paginatedPostData = pagination(postData, page, postsPerPage);
-
-  pageButtons(paginatedPostData.pages, page);
-
-  // Loop through the json data and create the posts with content inserted
-  for (let i = 0; i < paginatedPostData.data.length; i++) {
-    if ("content" in document.createElement("template")) {
-      // Instantiate the table with the existing HTML tbody
-      // and the row with the template
-      const postContainer = document.getElementById("post-container");
-      const template = document.getElementById("post-template");
-      const clone = template.content.cloneNode(true);
-
-      const findUserResponse = await fetch(
-        `https://dummyjson.com/users/filter?key=id&value=${paginatedPostData.data[i].id}`
-      );
-
-      const userData = await findUserResponse.json();
-
-      clone.getElementById("title").textContent =
-        paginatedPostData.data[i].title;
-      clone.getElementById(
-        "subtitle"
-      ).textContent = `Posted by: ${userData.users[0].firstName} ${userData.users[0].lastName}`;
-      clone.getElementById("card-body").textContent =
-        paginatedPostData.data[i].body;
-      clone.getElementById("likes").textContent =
-        paginatedPostData.data[i].reactions.likes;
-      clone.getElementById("dislikes").textContent =
-        paginatedPostData.data[i].reactions.dislikes;
-
-      postContainer.appendChild(clone);
+    // if response is not 200, throw an error
+    if (postResponse.status !== 200) {
+      throw "Get request has failed and cannot fetch posts.";
     }
+
+    const postData = await postResponse.json();
+
+    const paginatedPostData = pagination(postData, page, postsPerPage);
+
+    pageButtons(paginatedPostData.pages, page);
+
+    // Loop through the json data and create the posts with content inserted
+    for (let i = 0; i < paginatedPostData.data.length; i++) {
+      if ("content" in document.createElement("template")) {
+        // Instantiate the table with the existing HTML tbody
+        // and the row with the template
+        const postContainer = document.getElementById("post-container");
+        const template = document.getElementById("post-template");
+        const clone = template.content.cloneNode(true);
+
+        const findUserResponse = await fetch(
+          `https://dummyjson.com/users/filter?key=id&value=${paginatedPostData.data[i].id}`
+        );
+
+        const userData = await findUserResponse.json();
+
+        clone.getElementById("title").textContent =
+          paginatedPostData.data[i].title;
+        clone.getElementById(
+          "subtitle"
+        ).textContent = `Posted by: ${userData.users[0].firstName} ${userData.users[0].lastName}`;
+        clone.getElementById("card-body").textContent =
+          paginatedPostData.data[i].body;
+        clone.getElementById("likes").textContent =
+          paginatedPostData.data[i].reactions.likes;
+        clone.getElementById("dislikes").textContent =
+          paginatedPostData.data[i].reactions.dislikes;
+
+        postContainer.appendChild(clone);
+      }
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
