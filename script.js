@@ -72,7 +72,6 @@ postContainer.addEventListener("click", function (evt) {
 
       // If post is liked, it will remove the like and added count
       if (likeEl.classList.contains("fw-bold")) {
-        console.log("already liked");
         likeEl.classList.remove("fw-bold");
         likeEl.classList.remove("text-success");
         likeAmount--;
@@ -81,7 +80,6 @@ postContainer.addEventListener("click", function (evt) {
           likeEl.textContent = likes;
         });
       } else if (!likeEl.classList.contains("fw-bold")) {
-        console.log("not liked");
         likeEl.classList.add("fw-bold");
         likeEl.classList.add("text-success");
         likeAmount++;
@@ -102,7 +100,6 @@ postContainer.addEventListener("click", function (evt) {
           dislikeEl.textContent = dislikes;
         });
       } else if (!dislikeEl.classList.contains("fw-bold")) {
-        console.log("not liked");
         dislikeEl.classList.add("fw-bold");
         dislikeEl.classList.add("text-danger");
         dislikeAmount--;
