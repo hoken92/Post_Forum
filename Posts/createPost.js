@@ -8,7 +8,6 @@ export async function createNewPost(title, firstName, lastName, body) {
   // Validate the fields aren't empty
   const data = await newPostRequest(title, firstName, lastName, body);
 
-  console.log(data);
   const template = document.getElementById("post-template");
   const clone = template.content.cloneNode(true);
 
