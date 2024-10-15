@@ -4,6 +4,8 @@ You get to create an amazing post and view other existing posts on this webpage.
 
 **Link to project:** https://github.com/hoken92/Post_Forum
 
+**Github Pages link:** https://hoken92.github.io/Post_Forum/
+
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, Restful API, Axios, Bootstrap
