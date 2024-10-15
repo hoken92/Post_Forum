@@ -16,6 +16,7 @@ export function updateRatings(evt) {
         likeEl.classList.remove("text-success");
         likeAmount--;
 
+        // Sends a put request with postId to decrease like amount
         updateLikes(postID, likeAmount).then((likes) => {
           likeEl.textContent = likes;
         });
@@ -23,6 +24,8 @@ export function updateRatings(evt) {
         likeEl.classList.add("fw-bold");
         likeEl.classList.add("text-success");
         likeAmount++;
+
+        // Sends a put request with postId to increase like amount
         updateLikes(postID, likeAmount).then((likes) => {
           likeEl.textContent = likes;
         });
@@ -36,6 +39,7 @@ export function updateRatings(evt) {
         dislikeEl.classList.remove("text-danger");
         dislikeAmount++;
 
+        // Sends a put request with postId to decrease dislike amount
         updateDislikes(postID, dislikeAmount).then((dislikes) => {
           dislikeEl.textContent = dislikes;
         });
@@ -43,6 +47,8 @@ export function updateRatings(evt) {
         dislikeEl.classList.add("fw-bold");
         dislikeEl.classList.add("text-danger");
         dislikeAmount--;
+
+        // Sends a put request with postId to increase dislike amount
         updateDislikes(postID, dislikeAmount).then((dislikes) => {
           dislikeEl.textContent = dislikes;
         });
@@ -51,6 +57,7 @@ export function updateRatings(evt) {
   }
 }
 
+// Axios put request to update likes
 export async function updateLikes(id, value) {
   const updateObj = {
     reactions: {
@@ -70,6 +77,7 @@ export async function updateLikes(id, value) {
   }
 }
 
+// Axios put request to update dislikes
 export async function updateDislikes(id, value) {
   const updateObj = {
     reactions: {
