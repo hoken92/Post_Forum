@@ -65,6 +65,10 @@ export async function updateLikes(id, value) {
     },
   };
 
+  if (id > 30) {
+    return 0;
+  }
+
   try {
     const response = await axios.put(
       `https://dummyjson.com/posts/${id}`,
@@ -84,6 +88,10 @@ export async function updateDislikes(id, value) {
       dislikes: `${value}`,
     },
   };
+
+  if (id > 30) {
+    return 0;
+  }
 
   try {
     const response = await axios.put(
