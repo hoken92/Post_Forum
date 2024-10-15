@@ -61,9 +61,9 @@ newPostModal.addEventListener("submit", function (evt) {
 });
 
 // Search for post by text
-searchForm.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-});
+// searchForm.addEventListener("submit", function (evt) {
+//   evt.preventDefault();
+// });
 
 // Ability to like or dislike a post
 postContainer.addEventListener("click", function (evt) {
