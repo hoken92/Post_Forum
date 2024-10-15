@@ -21,6 +21,7 @@ You get to create an amazing post and view other existing posts on this webpage.
 ## Optimizations
 
 1. It would be a great addition to be able to edit random posts, retrieve the response data and populate the response data back into the edited post.
+2. Since POST or PUT doesn't actually update to the database, users can't like/dislike new posts. It would be cool to be able like/dislike new posts.
 
 ## Lessons Learned:
 
